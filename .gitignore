@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 /bin
 /lib
 Scorpion BarCode Command Line Utility.pdf
 example.jpeg
 template.pdf
-=======
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -134,4 +133,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
->>>>>>> 310c3ceb28e51c8e1229d26874c34b1b25df8603
