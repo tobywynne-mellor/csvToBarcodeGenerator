@@ -1,6 +1,4 @@
-# DO A POC
-    # generate a barcode with scorpion through python
-    # create a pdf with the correct measurements
+#! ./bin/python3
 
 ### Recieve ###
     # - csv input of parent SKU, barcode, season code, size, product type, design
@@ -33,17 +31,27 @@
         # methods - addLabel, savePDF
     # save to parent sku dir
 
-#import subprocess
+import sys
+from csvFileProcessor import CSVFileProcessor
+from barcodeSheetGenerator import BarcodeSheetGenerator
 
-#result = subprocess.call("", shell=True)
+class CSV_to_PDF_Generator:
+    def __init__(self, csv_file_path, output_path):
+        self.csv_file_path = csv_file_path
+        self.output_path = output_path
 
+    def create(self):
+        csvProcessor = CSVFileProcessor(csvFilePath)
 
-from reportlab.pdfgen.canvas import Canvas
-from reportlab.lib.pagesizes import A4
+        if csvProcessor.isValid():
+            data = csvProcessor.getData()
+            bsg = BarcodeSheetGenerator(data)
+            bsg.generate(outputPath)
 
-canvas = Canvas("hello.pdf", pagesize=A4)
-canvas.drawString(72, 72, "Hello, World")
+def main():
+    csv_file_path = sys.argv[1]
+    output_path = sys.argv[2]
+    generator = CSV_to_PDF_Generator(csv_file_path, output_path)
+    generator.create()
 
-canvas.drawImage("testimg.png", 200,200, mask="auto")
-canvas.showPage()
-canvas.save()
+main()
