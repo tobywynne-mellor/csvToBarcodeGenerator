@@ -41,12 +41,12 @@ class CSV_to_PDF_Generator:
         self.output_path = output_path
 
     def create(self):
-        csvProcessor = CSVFileProcessor(csvFilePath)
+        csvProcessor = CSVFileProcessor(self.csv_file_path)
 
         if csvProcessor.isValid():
             data = csvProcessor.getData()
             bsg = BarcodeSheetGenerator(data)
-            bsg.generate(outputPath)
+            bsg.generate(self.output_path)
 
 def main():
     csv_file_path = sys.argv[1]
