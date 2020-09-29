@@ -1,3 +1,5 @@
+
+
 import os
 import math
 from imageProcess import ImageProcessor
@@ -13,6 +15,7 @@ class BarcodeSheetGenerator:
         data = barcodeNumber
         cmd = './ScorpionBarCode -action "pdff" -type "EAN-13" -data "'+data+'" -output "./'+data+'.pdf" -antialiasoff 1'
         os.system(cmd)
+        print("Create barcode " + data)
         processor = ImageProcessor(width=1000)
         image = processor.process("./"+data+".pdf")
         os.remove(data+".pdf")

@@ -1,3 +1,5 @@
+#! ./bin/python3
+
 import csv
 import os
 import sys
@@ -20,11 +22,17 @@ def main():
                 skus[row['sku']].append(row)
 
         for sku, rows in skus.items():
-            os.mkdir("./"+sku)
-            with open("./"+sku+"/"+sku+".csv", mode='w') as small_csv_file:
-                writer = csv.writer(small_csv_file, delimiter=',', quotechar='"',quoting=csv.QUOTE_MINIMAL)
+            print(sku, rows)
+            print("creating "+ sku  + " folder") 
+            os.makedirs("./output/"+sku)
+            with open("./output/"+sku+"/"+sku+".csv", mode='w') as small_csv_file:
+                fieldnames = ['sku', 'barcode', 'season', 'size', 'product', 'design']
+                writer = csv.DictWriter(small_csv_file, fieldnames=fieldnames)
+                writer.writeheader()
                 for row in rows:
-                    writer.writerow(list(row).split(','))
-            CSV_to_PDF_Generator('./'+sku+'/'+sku+'.csv', './'+sku+'/'+sku+'.pdf') 
+                    print('writing row: ', row, type(row))
+                    writer.writerow(row)
+            generator = CSV_to_PDF_Generator('./output/'+sku+'/'+sku+'.csv', './output/'+sku+'/'+sku+'.pdf') 
+            generator.create()
 
 main()

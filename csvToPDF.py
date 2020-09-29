@@ -54,4 +54,4 @@ def main():
     generator = CSV_to_PDF_Generator(csv_file_path, output_path)
     generator.create()
 
-main()
+#main()
