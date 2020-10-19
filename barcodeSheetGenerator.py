@@ -37,7 +37,7 @@ class BarcodeSheetGenerator:
         top_margin = 1.3*cm
         side_margin = 0.4*cm
         label_width = 4.95*cm
-        label_height = 3*cm
+        label_height = 2.9*cm
         vertical_pitch = 3*cm
         horizontal_pitch = 5.05*cm
 
@@ -106,7 +106,7 @@ class BarcodeSheetGenerator:
 
                     design_x = design_x_start + adjust_x
                     design_y = design_y_start - adjust_y
-                    canvas.drawRightString(design_x, design_y, data['design'])
+                    canvas.drawRightString(design_x, design_y, data['design'][:12] if len(data['design']) > 12 else data['design'])
                     
                     season_x = season_x_start + adjust_x
                     season_y = season_y_start - adjust_y
