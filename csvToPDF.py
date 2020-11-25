@@ -33,7 +33,7 @@
 
 import sys
 from csvFileProcessor import CSVFileProcessor
-from barcodeSheetGenerator import BarcodeSheetGenerator
+from barcodeSheetGeneratorV2 import BarcodeSheetGeneratorV2
 
 class CSV_to_PDF_Generator:
     def __init__(self, csv_file_path, output_path):
@@ -45,7 +45,7 @@ class CSV_to_PDF_Generator:
 
         if csvProcessor.isValid():
             data = csvProcessor.getData()
-            bsg = BarcodeSheetGenerator(data)
+            bsg = BarcodeSheetGeneratorV2(data)
             bsg.generate(self.output_path)
 
 def main():

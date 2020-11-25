@@ -1,17 +1,28 @@
-
-
 import os
 import math
 from imageProcess import ImageProcessor
 from reportlab.pdfgen.canvas import Canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import cm
+from reportlab.graphics.barcode.eanbc import Ean13BarcodeWidget
 
 class BarcodeSheetGenerator:
     def __init__(self, csv_data):
         self.csv_data = csv_data
 
     def createBarcode(self, barcodeNumber):
+        '''
+        barcode = Ean13BarcodeWidget(barcodeNumber)
+        barcode.barWidth = 1.5
+        barcode.barHeight = 51.0
+        x0, y0, bw, bh = barcode.getBounds()
+        barcode.x = (4.95*cm - bw) / 2
+        barcode.y = 17
+
+        label_drawing = Drawing(4.95*cm, 2.9*cm)
+        label_drawing.add(barcode)
+        return label_drawing
+        '''
         data = barcodeNumber
         cmd = './ScorpionBarCode -action "pdff" -type "EAN-13" -data "'+data+'" -output "./'+data+'.pdf" -antialiasoff 1'
         os.system(cmd)
@@ -91,6 +102,7 @@ class BarcodeSheetGenerator:
                     image_x = image_x_start + adjust_x
                     image_y = image_y_start - adjust_y
                     canvas.drawImage(self.createBarcode(data['barcode']), image_x, image_y, width=image_width, height=image_height, mask='auto')
+                    #canvas.draw(self.createBarcode(data['barcode']), image_x, image_y, width=image_width, height=image_height, mask='auto')
 
                     sku_x = sku_x_start + adjust_x
                     sku_y = sku_y_start - adjust_y

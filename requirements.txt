@@ -1,8 +1,13 @@
+altgraph==0.17
 cssselect2==0.3.0
 csvvalidator==1.2
 lxml==4.5.2
+macholib==1.14
 pdf2image==1.14.0
 Pillow==7.2.0
+pyinstaller==4.1
+pyinstaller-hooks-contrib==2020.10
+PySimpleGUI==4.32.1
 reportlab==3.5.50
 svglib==1.0.1
 tinycss2==1.0.2
