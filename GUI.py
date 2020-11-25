@@ -7,6 +7,7 @@ from masterCSVToFullFolders import Batch_CSV_TO_PDF_GENERATOR
 layout = [
         [sg.Text("Spreadsheet File"), sg.Input(), sg.FileBrowse()],
         [sg.Text("Output Folder"), sg.Input(), sg.FolderBrowse()],
+        [sg.Checkbox("Don't Group")],
         [sg.Submit()],
         [sg.Output(size=(100,30), key='-OUTPUT-')]
     ]
@@ -21,7 +22,8 @@ while True:
     try:
         csv = values[0]
         output_dir = values[1]
-        barcodeGenerator = Batch_CSV_TO_PDF_GENERATOR(csv, output_dir) 
+        nogroup = True if values[2] else False
+        barcodeGenerator = Batch_CSV_TO_PDF_GENERATOR(csv, output_dir, nogroup) 
         barcodeGenerator.process() 
     except Exception as e:
         print(e)
