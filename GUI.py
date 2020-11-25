@@ -18,9 +18,11 @@ while True:
     event, values = window.read()
     if event == sg.WIN_CLOSED or event == 'Cancel': # if user closes window or clicks cancel
         break
-    csv = values[0]
-    output_dir = values[1]
-    print=sg.Print
-    barcodeGenerator = Batch_CSV_TO_PDF_GENERATOR(csv, output_dir) 
-    barcodeGenerator.process() 
+    try:
+        csv = values[0]
+        output_dir = values[1]
+        barcodeGenerator = Batch_CSV_TO_PDF_GENERATOR(csv, output_dir) 
+        barcodeGenerator.process() 
+    except Exception as e:
+        print(e)
 window.close()
