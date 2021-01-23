@@ -7,7 +7,7 @@ class CSVFileProcessor:
         self.data = None
 
     def isValid(self):
-        with open(self.file_path, mode='r') as csv_file:
+        with open(self.file_path, mode='r', encoding='utf-8-sig') as csv_file:
             csv_reader = list(csv.DictReader(csv_file))
 
             errors = []
@@ -33,6 +33,7 @@ class CSVFileProcessor:
                         errors.append(header + " not in " + str(correct_headers))
 
             if len(errors) > 0:
+                print(row)
                 print("\n".join(errors))
                 return False
             else:

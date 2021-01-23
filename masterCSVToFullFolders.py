@@ -56,7 +56,7 @@ class Batch_CSV_TO_PDF_GENERATOR:
 def main():
     csv_file = sys.argv[1]
     output_dir = sys.argv[2]
-    batch_generator = Batch_CSV_TO_PDF_GENERATOR(csv_file, output_dir)
+    batch_generator = Batch_CSV_TO_PDF_GENERATOR(csv_file, output_dir, True)
     batch_generator.process()
 
 #main()

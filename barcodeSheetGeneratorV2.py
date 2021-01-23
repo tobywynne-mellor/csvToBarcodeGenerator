@@ -63,11 +63,11 @@ class BarcodeSheetGeneratorV2:
 
         label_drawing = Drawing(self.label_width, self.label_height)
 
-        sku = String(self.sku_x_start, self.sku_y_start, data['sku'], fontName="Helvetica", fontSize=7, textAnchor="start")
-        size = String(self.size_x_start, self.size_y_start, data['size'], fontName="Helvetica", fontSize=7, textAnchor="end")
-        product = String(self.product_x_start, self.product_y_start, data['product'], fontName="Helvetica", fontSize=7, textAnchor="start")
-        design = String(self.design_x_start, self.design_y_start, data['design'], fontName="Helvetica", fontSize=7, textAnchor="end")
-        season = String(self.season_x_start, self.season_y_start, data['season'], fontName="Helvetica", fontSize=7, textAnchor="middle")
+        sku = String(self.sku_x_start, self.sku_y_start, data['sku'].strip(), fontName="Helvetica", fontSize=7, textAnchor="start")
+        size = String(self.size_x_start, self.size_y_start, data['size'].strip()[:14], fontName="Helvetica", fontSize=7, textAnchor="end")
+        product = String(self.product_x_start, self.product_y_start, data['product'].strip()[:12], fontName="Helvetica", fontSize=7, textAnchor="start")
+        design = String(self.design_x_start, self.design_y_start, data['design'].strip()[:12], fontName="Helvetica", fontSize=7, textAnchor="end")
+        season = String(self.season_x_start, self.season_y_start, data['season'].strip()[:2], fontName="Helvetica", fontSize=7, textAnchor="middle")
 
         label_drawing.add(barcode)
         label_drawing.add(sku)
